@@ -1,6 +1,10 @@
 
 
 # Welcome to SpotifyApi
+1.Select Genre
+![Spotify Api UI](https://i.hizliresim.com/amxgnF.png)
+
+2. Load table
 ![Spotify Api UI](https://i.hizliresim.com/DoRdXh.png)
 
 # Setup SpotifyApi
