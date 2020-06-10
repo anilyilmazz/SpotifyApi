@@ -19,13 +19,13 @@ $( document ).ready(function() {
 function submitClick(){
      event.preventDefault();
      let genreName = $( "#selectGenre option:selected" ).text();
+     let artistName;
      $('#tracksTable').show();
      if (datatable) {
       $('#tracksTable').empty();
       datatable.destroy();
      }
     datatable = $('#tracksTable').DataTable( {
-           "order": [[ 1, "asc" ]],
            "paging": false,
            "destroy": true,
            "serverSide": false,
@@ -34,7 +34,8 @@ function submitClick(){
                "url": `/tracks/${genreName}`,
                 "contentType": 'application/json;',
                "dataSrc": function (data){
-                   $('#artistName').html(`<strong>${data.artistname.charAt(0).toUpperCase() + data.artistname.slice(1)}</strong> Top 10 Tracks`);
+                   artistName = data.artistname.toLowerCase().split(' ').map(s => s.charAt(0).toUpperCase() + s.substring(1)).join(' ')
+                   $('#artistName').html(`<strong>${artistName}</strong> Top 10 Tracks`);
                    return data.tracklist;
                },
                "error": function (xhr, error, code)
@@ -44,8 +45,17 @@ function submitClick(){
                }
            },
            "columns": [
+                {
+                   "render": function ( data, type, full, meta ) {
+                       return `<img src= ${full.album.images[2].url}>`;
+                   }
+               },
+               {
+                   "render": function ( data, type, full, meta ) {
+                       return `<td>${artistName}</td>`;
+                   }
+               },
                { "data": "name" },
-               { "data": "popularity" },
                { "data": "album.name" },
                {
                    "defaultContent": `<button class ="btn btn-secondary preview">Preview</button>`

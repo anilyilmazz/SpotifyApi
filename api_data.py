@@ -3,7 +3,6 @@ import requests
 import random
 
 def getaccesstoken():
-
     client_id = #Your Client Id
     client_secret = #Your Client Secret
     grant_type = 'client_credentials'
@@ -18,9 +17,8 @@ def getaccesstoken():
     return json_obj['access_token']
 
 def getartistid(artistName,accestoken):
-    url = 'https://api.spotify.com/v1/search?q={artistName}&type=artist'.format(artistName = artistName)
-
-    response = requests.get(url,headers={"Authorization": "Bearer {accesstoken}".format(accesstoken = accestoken)})
+    url = 'https://api.spotify.com/v1/search?q={artistName}&type=artist'.format(artistName=artistName)
+    response = requests.get(url,headers={"Authorization": "Bearer {accesstoken}".format(accesstoken=accestoken)})
     json_obj = json.loads(response.text)
 
     return json_obj['artists']['items'][0]['id']
