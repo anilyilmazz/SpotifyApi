@@ -1,0 +1,35 @@
+{% extends "_layout.html" %}
+{% block content %}
+<div class="m-3">
+<form action="">
+  <div class="form-row">
+    <div class="form-group col-6">
+      <label for="selectGenre">Select Genre</label>
+      <select class="form-control" id="selectGenre" name="genreselect">
+    </select>
+    </div>
+    <div class="form-group col-6">
+        <button class="form-control btn btn-primary" id ="submitBtn" style="margin-top: 30px;" onclick="submitClick()">Submit</button>
+    </div>
+  </div>
+</form>
+<hr>
+
+<p id="artistName" class="text-center"></p>
+<table id="tracksTable" class="table table-striped table-hover w-100 "style="display:none;">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Popularity</th>
+            <th>Album Name</th>
+            <th>Preview</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+</div>
+
+
+<script src="{{ url_for('static', filename='js/pages/index.js') }}" ></script>
+{% endblock %}
