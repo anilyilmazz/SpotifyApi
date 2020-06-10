@@ -5,12 +5,11 @@ import random
 def getaccesstoken():
     client_id = #Your Client Id
     client_secret = #Your Client Secret
-    grant_type = 'client_credentials'
-
-    body_params = {'grant_type': grant_type}
 
     url = 'https://accounts.spotify.com/api/token'
 
+    grant_type = 'client_credentials'
+    body_params = {'grant_type': grant_type}
     response = requests.post(url, data=body_params, auth=(client_id, client_secret))
     json_obj = json.loads(response.text)
 
@@ -20,7 +19,6 @@ def getartistid(artistName,accestoken):
     url = 'https://api.spotify.com/v1/search?q={artistName}&type=artist'.format(artistName=artistName)
     response = requests.get(url,headers={"Authorization": "Bearer {accesstoken}".format(accesstoken=accestoken)})
     json_obj = json.loads(response.text)
-
     return json_obj['artists']['items'][0]['id']
 
 def getartisttoptrack(artistId,accestoken):
